@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+		<link rel="stylesheet" href="style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Languages Map</title>
+	</head>
+	<body>
+		<div id="map"></div>
+
+		<div id="popover">
+			<div id="popover-name"></div>
+			<div id="popover-languages"></div>
+			<div id="popover-population"></div>
+		</div>
+
+		<div id="language-picker">
+			<div class="custom-select">
+				<input type="text" id="searchInput" placeholder="Search for a language..." />
+				<div id="dropdown" class="dropdown"></div>
+			</div>
+			<span id="totalSpeakers"></span>
+			<div id="selectedLanguages" class="selected-languages"></div>
+		</div>
+		<script type="module" src="/src/map.ts"></script>
+	</body>
+</html>
