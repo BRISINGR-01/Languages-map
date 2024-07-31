@@ -14,8 +14,6 @@ const colors = [
 	"#AFD0D6",
 ];
 
-export const isDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-
 export function randomColor() {
 	if (colors.length === 0) {
 		const letters = "0123456789ABCDEF";

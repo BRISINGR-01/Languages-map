@@ -41,13 +41,15 @@ export function hoverPath(e: MouseEvent | null) {
 	}
 }
 
-export function updatePopoverLanguages(
+export function updatePopover(
 	popover: HTMLElement | null,
 	country: countriesType[keyof countriesType] | null,
 	selectedLagnuages: SelectedLanguages,
 	name: string,
 	e: MouseEvent | null
 ) {
+	if (window.innerHeight > window.innerWidth) return;
+
 	popover ||= document.getElementById("popover")!;
 	const nameDiv = document.getElementById("popover-name")!;
 	const languages = document.getElementById("popover-languages")!;
@@ -69,6 +71,8 @@ export function updatePopoverLanguages(
 		if (popoverCoord.bottom > window.innerHeight) {
 			popover.style.top = e.clientY - popoverCoord.height - 10 + "px";
 		}
+	} else {
+		throw new Error("updatePopover: e is null");
 	}
 
 	if (!country) {

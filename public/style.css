@@ -22,6 +22,8 @@ body {
 	justify-content: center;
 	width: 100vw;
 	height: 100vh;
+	max-width: 100vw;
+	max-height: 100vh;
 	overflow: hidden;
 	background-image: url("bg.jpg");
 }
@@ -72,6 +74,7 @@ svg {
 
 #language-picker {
 	width: 20em;
+	max-width: 90vw;
 	margin: 0 auto;
 	position: absolute;
 	top: 0;
@@ -97,7 +100,11 @@ svg {
 	gap: 10px;
 }
 
+#totalSpeakers {
+	color: white;
+}
 .pill {
+	user-select: none;
 	display: flex;
 	align-items: center;
 	color: #fff;

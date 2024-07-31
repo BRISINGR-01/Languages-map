@@ -1,16 +1,9 @@
 import { countries } from "countries-languages";
-import {
-	addDropdownOption,
-	closeDropdown,
-	getColorAndPill,
-	hoverPath,
-	loadMap,
-	updatePopoverLanguages,
-} from "./htmlUtils";
+import { addDropdownOption, closeDropdown, getColorAndPill, hoverPath, loadMap, updatePopover } from "./htmlUtils";
 import SelectedLanguages from "./SelectedLanguages";
-import { blendColors, fixData, format, getByName, getLanguages, isColorTooBright, isDarkMode } from "./utils";
+import { blendColors, fixData, format, getByName, getLanguages, isColorTooBright } from "./utils";
 
-let disappearTimeout: number | null = null;
+let disappearTimeout: NodeJS.Timeout | null = null;
 
 const countriesList = Object.values(countries);
 const selectedLagnuages = new SelectedLanguages();
@@ -21,9 +14,9 @@ function init() {
 	getLanguages(countriesList, allLanguages);
 
 	document.querySelectorAll("path").forEach((path) => {
-		path.setAttribute("fill", isDarkMode ? "white" : "black");
-		path.dataset.originalColor = isDarkMode ? "white" : "black";
-		path.setAttribute("stroke", !isDarkMode ? "white" : "#1f1f1f");
+		path.setAttribute("fill", "white");
+		path.dataset.originalColor = "white";
+		path.setAttribute("stroke", "#1f1f1f");
 		path.setAttribute("stroke-width", "0.6");
 
 		const name = path.getAttribute("title");
@@ -38,6 +31,7 @@ function init() {
 
 function onMove(e: MouseEvent) {
 	hoverPath(e);
+
 	if (!e.target) return;
 
 	const name = (e.target as HTMLElement).getAttribute("title")!;
@@ -54,7 +48,7 @@ function onMove(e: MouseEvent) {
 
 	const country = getByName(name, countriesList);
 
-	updatePopoverLanguages(popover, country, selectedLagnuages, name, e);
+	updatePopover(popover, country, selectedLagnuages, name, e);
 }
 
 function selectLanguage(language: string) {
@@ -227,7 +221,7 @@ document.addEventListener("click", (e) => {
 			}
 		}
 
-		updatePopoverLanguages(null, country, selectedLagnuages, name, null);
+		updatePopover(null, country, selectedLagnuages, name, null);
 	}
 });
 
